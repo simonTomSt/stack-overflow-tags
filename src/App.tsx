@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MainLayout } from '@/layouts/MainLayout';
+import { MainLayout } from '@/lib/components/layouts/MainLayout';
 import { TagsPage } from '@/pages/tags/TagsPage';
 
 const queryClient = new QueryClient();
