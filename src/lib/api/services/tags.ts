@@ -22,7 +22,6 @@ export const getTags = async ({
       order,
       page,
       pagesize,
-      key: 'p0VuFjArJ*9)AFSKxEdyIw((',
     },
   });
 
