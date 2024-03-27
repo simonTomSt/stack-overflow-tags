@@ -1,27 +1,12 @@
-import {
-  PaginationInfo,
-  PaginationInput,
-  SortInput,
-  SortOrder,
-} from '@/lib/api/api-models';
+import { PaginationInput, SortInput, SortOrder } from '@/lib/api/api-models';
 
-export interface TableControlsState<TSortBy extends string = string>
-  extends SortInput<TSortBy>,
-    PaginationInput,
-    PaginationInfo {}
+export interface TableControlsState extends SortInput, PaginationInput {}
 
 export enum ActionType {
-  SET_PAGINATION_INFO = 'SET_PAGINATION_INFO',
   SET_PAGE = 'SET_PAGE',
   SET_PAGESIZE = 'SET_PAGESIZE',
-  SET_SORT = 'SET_SORT',
-  SET_ORDER = 'SET_ORDER',
+  SET_SORT_INPUT = 'SET_SORT_INPUT',
 }
-
-type SetPaginationInfoAction = {
-  type: ActionType.SET_PAGINATION_INFO;
-  payload: PaginationInfo;
-};
 
 type SetPageAction = {
   type: ActionType.SET_PAGE;
@@ -33,19 +18,12 @@ type SetPagesizeAction = {
   payload: number;
 };
 
-type SetSortAction<TSortBy extends string = string> = {
-  type: ActionType.SET_SORT;
-  payload: TSortBy;
+type SetSortInputAction = {
+  type: ActionType.SET_SORT_INPUT;
+  payload: { order: SortOrder; sort: string };
 };
 
-type SetOrderAction = {
-  type: ActionType.SET_ORDER;
-  payload: SortOrder;
-};
-
-export type TableControlAction<TSortBy extends string = string> =
-  | SetPaginationInfoAction
+export type TableControlAction =
   | SetPageAction
   | SetPagesizeAction
-  | SetSortAction<TSortBy>
-  | SetOrderAction;
+  | SetSortInputAction;

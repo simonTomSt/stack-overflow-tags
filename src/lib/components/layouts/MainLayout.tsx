@@ -1,3 +1,4 @@
+import { Container } from '@mui/material';
 import { ReactNode } from 'react';
 
 type MainLayoutProps = {
@@ -5,5 +6,13 @@ type MainLayoutProps = {
 };
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
-  return <div>{children}</div>;
+  return (
+    <>
+      <header>StackOverflow Tags</header>
+      <main>
+        <Container maxWidth='md'>{children}</Container>
+      </main>
+      <footer></footer>
+    </>
+  );
 };

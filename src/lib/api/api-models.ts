@@ -9,9 +9,9 @@ export interface Tag {
   name: string;
 }
 
-export interface SortInput<T extends string> {
+export interface SortInput {
   order: 'desc' | 'asc';
-  sort: T;
+  sort: string;
 }
 
 export interface PaginationInput {

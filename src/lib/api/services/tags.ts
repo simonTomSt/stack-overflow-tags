@@ -1,17 +1,12 @@
 import { apiClient } from '../api-client';
-import {
-  TagsResponse,
-  TagsSortBy,
-  SortInput,
-  PaginationInput,
-} from '../api-models';
+import { TagsResponse, SortInput, PaginationInput } from '../api-models';
 import { ApiRoutes } from '../api-routes';
 
 // Stack Overflow filter to select only `count`, `name` and `last_activity_date` fields
 const FIELDS_FILTER = '!LhRRNhD6rrbsQrKVm4pD14';
 const SITE = 'stackoverflow';
 
-interface GetsTagsArgs extends SortInput<TagsSortBy>, PaginationInput {}
+interface GetsTagsArgs extends SortInput, PaginationInput {}
 
 export const getTags = async ({
   sort,
@@ -27,6 +22,7 @@ export const getTags = async ({
       order,
       page,
       pagesize,
+      key: 'p0VuFjArJ*9)AFSKxEdyIw((',
     },
   });
 
