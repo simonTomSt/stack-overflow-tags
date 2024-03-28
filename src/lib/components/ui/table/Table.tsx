@@ -85,7 +85,7 @@ export const Table = <T extends RowData>({
                         {header.isPlaceholder ? null : (
                           <TableSortLabel
                             active={!!sortDirection}
-                            direction={sortDirection || 'desc'}
+                            direction={sortDirection || 'asc'}
                           >
                             {flexRender(
                               header.column.columnDef.header,
@@ -122,14 +122,11 @@ export const Table = <T extends RowData>({
               })}
             </TableBody>
           </MUITable>
+          {!tableData.length && !!noDataComponent && (
+            <Box sx={{ p: 1.5 }}>{noDataComponent}</Box>
+          )}
         </TableContainer>
       </Box>
-
-      {!tableData.length && !!noDataComponent && (
-        <div className='border-t border-t-typography-deep-down-text py-5 text-center text-base font-regular text-typography-dark-text'>
-          {noDataComponent}
-        </div>
-      )}
     </div>
   );
 };
