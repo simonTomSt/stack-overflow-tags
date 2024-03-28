@@ -2,12 +2,15 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useTranslation } from 'react-i18next';
 
 interface FallbackErrorProps {
   onTryAgain: () => void;
 }
 
 export const FallbackError: React.FC<FallbackErrorProps> = ({ onTryAgain }) => {
+  const { t } = useTranslation('main');
+
   return (
     <Box
       sx={{
@@ -22,10 +25,10 @@ export const FallbackError: React.FC<FallbackErrorProps> = ({ onTryAgain }) => {
       }}
     >
       <Typography variant='h6' gutterBottom>
-        Oops, an error occurred!
+        {t('error_ocurred')}
       </Typography>
       <Button variant='outlined' color='primary' onClick={onTryAgain}>
-        Try again
+        {t('try_again')}
       </Button>
     </Box>
   );

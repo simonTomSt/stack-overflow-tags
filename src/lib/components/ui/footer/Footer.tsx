@@ -2,11 +2,24 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import FacebookIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
+} from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
+  const { i18n } = useTranslation(['home', 'main']);
+
+  const onLangChange = (e: SelectChangeEvent<string>) => {
+    const language = e.target.value;
+    i18n.changeLanguage(language);
+  };
+
   return (
     <Container
       sx={{
@@ -29,9 +42,19 @@ export const Footer = () => {
         }}
       >
         <div>
-          <Typography variant='body2' color='text.secondary' mt={1}>
-            Szymon Stępień
-          </Typography>
+          <FormControl fullWidth>
+            <Select<string>
+              value={i18n.language}
+              size='small'
+              onChange={onLangChange}
+            >
+              {['en', 'pl'].map((lang) => (
+                <MenuItem key={lang} value={lang}>
+                  {lang.toUpperCase()}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <Stack
           direction='row'

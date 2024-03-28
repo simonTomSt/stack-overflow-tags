@@ -1,6 +1,9 @@
 import { Box, Container, Stack, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export const Header = () => {
+  const { t } = useTranslation('main');
+
   return (
     <Box
       sx={{
@@ -47,7 +50,7 @@ export const Header = () => {
             color='text.secondary'
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
-            Explore Stack Overflow tags.
+            {t('header_subtitle')}
           </Typography>
         </Stack>
       </Container>

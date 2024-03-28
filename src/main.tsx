@@ -4,6 +4,7 @@ import App from './App.tsx';
 import { ThemeProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
+import './i18n';
 
 const theme = createTheme();
 

@@ -1,0 +1,10 @@
+{
+  "error_ocurred": "Oops, an error occurred!",
+  "try_again": "Try again",
+  "items_on_page": "Items on page",
+  "header_subtitle": "Explore Stack Overflow tags.",
+  "name": "Name",
+  "popularity": "Popularity",
+  "last_activity": "Last Activity",
+  "no_data": "No data available in table"
+}

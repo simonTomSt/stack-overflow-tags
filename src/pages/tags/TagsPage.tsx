@@ -14,10 +14,13 @@ import {
 } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select/SelectInput';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { columns } from './columns';
-import { ToastMessage } from '@/lib/components/ui/toast';
+import { useTranslation } from 'react-i18next';
+import { useTagsColumns } from './useTagsColumns';
 
 export const TagsPage = () => {
+  const { t } = useTranslation('main');
+  const columns = useTagsColumns();
+
   const pageSizesOption = [10, 20, 30, 50];
   const {
     page,
@@ -33,7 +36,7 @@ export const TagsPage = () => {
     order: SortOrder.Desc,
   });
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading } = useQuery({
     throwOnError: true,
     queryKey: [ApiRoutes.Tags, page, sort, order, pagesize],
     queryFn: () =>
@@ -56,16 +59,13 @@ export const TagsPage = () => {
 
   return (
     <section>
-      <ToastMessage open={isError} severity='error'>
-        {error?.message || 'An error occurred'}
-      </ToastMessage>
       <Box sx={{ maxWidth: 130, ml: 'auto', pb: 1 }}>
         <FormControl fullWidth>
-          <InputLabel id='pagesize-label'>Items on page</InputLabel>
+          <InputLabel id='pagesize-label'>{t('items_on_page')}</InputLabel>
           <Select<number>
             labelId='pagesize-label'
             value={pagesize}
-            label='Items on page'
+            label={t('items_on_page')}
             onChange={handlePagesizeChange}
           >
             {pageSizesOption.map((sizeOption) => (
@@ -84,7 +84,7 @@ export const TagsPage = () => {
           skeletonsAmount={pagesize}
           noDataComponent={
             <Box sx={{ textAlign: 'center', py: 2 }}>
-              <Typography>No data available in table</Typography>
+              <Typography>{t('no_data')}</Typography>
             </Box>
           }
           onSort={setSortInput}
