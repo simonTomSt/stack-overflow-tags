@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+# Stack Overflow tags
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a project of Stack Overflow tags table.
 
-Currently, two official plugins are available:
+The stack used to create this project:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🏎 [Vite](https://vitejs.dev/) — High-performance bundling system
 
-## Expanding the ESLint configuration
+- 🚀 [React](https://reactjs.org/) — JavaScript library for user interfaces
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- 📖 [Storybook](https://storybook.js.org/) — UI component environment powered by Vite
 
-- Configure the top-level `parserOptions` property like this:
+As well as a few others tools:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- [ESLint](https://eslint.org/) for code linting
+
+- [Prettier](https://prettier.io) for code formatting
+
+- [Husky](https://typicode.github.io/husky/) for hooks on pre commit
+
+## Functionality
+
+- Tags table
+- Table sorting
+- Table page size changing
+- Table pagination
+
+### How to run project
+
+- `npm install` - Install all dependencies
+
+- `npm run dev` - Run project locally
+
+- `npm run storybook` - Run storybook locally
+
+- `npm run test` - Run all tests
