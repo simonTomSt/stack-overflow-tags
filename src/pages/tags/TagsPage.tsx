@@ -15,6 +15,7 @@ import {
 import { SelectChangeEvent } from '@mui/material/Select/SelectInput';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { columns } from './columns';
+import { ToastMessage } from '@/lib/components/ui/toast';
 
 export const TagsPage = () => {
   const pageSizesOption = [10, 20, 30, 50];
@@ -32,7 +33,8 @@ export const TagsPage = () => {
     order: SortOrder.Desc,
   });
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
+    throwOnError: true,
     queryKey: [ApiRoutes.Tags, page, sort, order, pagesize],
     queryFn: () =>
       getTags({
@@ -54,6 +56,9 @@ export const TagsPage = () => {
 
   return (
     <section>
+      <ToastMessage open={isError} severity='error'>
+        {error?.message || 'An error occurred'}
+      </ToastMessage>
       <Box sx={{ maxWidth: 130, ml: 'auto', pb: 1 }}>
         <FormControl fullWidth>
           <InputLabel id='pagesize-label'>Items on page</InputLabel>
@@ -87,7 +92,7 @@ export const TagsPage = () => {
 
       <Box sx={{ display: 'flex', justifyContent: 'center', paddingTop: 2 }}>
         <Pagination
-          count={getTotalPages(data?.total || 0)}
+          count={getTotalPages(data?.total || 1)}
           onChange={(_, page) => setPage(page)}
           color='primary'
           page={page}
