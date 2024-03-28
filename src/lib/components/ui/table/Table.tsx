@@ -25,15 +25,19 @@ export const Table = <T extends RowData>({
   data,
   columns,
   loading,
-  onSort,
   noDataComponent,
+  skeletonsAmount = 20,
+  onSort,
 }: TableProps<T>) => {
   const tableData = useMemo(
     () =>
       loading
-        ? (Array.from({ length: 20 }, (_, index) => index + 1) as T[])
+        ? (Array.from(
+            { length: skeletonsAmount },
+            (_, index) => index + 1
+          ) as T[])
         : data,
-    [data, loading]
+    [data, loading, skeletonsAmount]
   );
   const [sorting, setSorting] = useState<SortingState>([]);
   const sortedInitializedRef = useRef<number>(0);
@@ -83,15 +87,24 @@ export const Table = <T extends RowData>({
                           : {})}
                       >
                         {header.isPlaceholder ? null : (
-                          <TableSortLabel
-                            active={!!sortDirection}
-                            direction={sortDirection || 'asc'}
-                          >
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
+                          <>
+                            {sortEnabled ? (
+                              <TableSortLabel
+                                active={!!sortDirection}
+                                direction={sortDirection || 'asc'}
+                              >
+                                {flexRender(
+                                  header.column.columnDef.header,
+                                  header.getContext()
+                                )}
+                              </TableSortLabel>
+                            ) : (
+                              flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )
                             )}
-                          </TableSortLabel>
+                          </>
                         )}
                       </TableCell>
                     );

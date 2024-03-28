@@ -81,6 +81,7 @@ export const TagsPage = () => {
           data={data?.items || []}
           columns={columns}
           loading={isLoading}
+          skeletonsAmount={pagesize}
           noDataComponent={
             <Box sx={{ textAlign: 'center', py: 2 }}>
               <Typography>No data available in table</Typography>
