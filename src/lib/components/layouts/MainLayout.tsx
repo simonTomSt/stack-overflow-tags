@@ -1,5 +1,7 @@
 import { Container } from '@mui/material';
 import { ReactNode } from 'react';
+import { Header } from '../ui/header';
+import { Footer } from '../ui/footer';
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -8,11 +10,11 @@ type MainLayoutProps = {
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
-      <header>StackOverflow Tags</header>
+      <Header />
       <main>
         <Container maxWidth='md'>{children}</Container>
       </main>
-      <footer></footer>
+      <Footer />
     </>
   );
 };
