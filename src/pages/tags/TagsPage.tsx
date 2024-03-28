@@ -1,4 +1,4 @@
-import { Tag, TagsSortBy } from '@/lib/api/api-models';
+import { SortOrder, Tag, TagsSortBy } from '@/lib/api/api-models';
 import { ApiRoutes } from '@/lib/api/api-routes';
 import { getTags } from '@/lib/api/services/tags';
 import { Table } from '@/lib/components/ui/table';
@@ -17,6 +17,7 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { columns } from './columns';
 
 export const TagsPage = () => {
+  const pageSizesOption = [10, 20, 30, 50];
   const {
     page,
     pagesize,
@@ -28,6 +29,7 @@ export const TagsPage = () => {
     setPagesize,
   } = useTableControl({
     sort: TagsSortBy.Popular,
+    order: SortOrder.Desc,
   });
 
   const { data, isLoading } = useQuery({
@@ -52,7 +54,7 @@ export const TagsPage = () => {
 
   return (
     <section>
-      <Box sx={{ maxWidth: 200, ml: 'auto', pb: 1 }}>
+      <Box sx={{ maxWidth: 130, ml: 'auto', pb: 1 }}>
         <FormControl fullWidth>
           <InputLabel id='pagesize-label'>Items on page</InputLabel>
           <Select<number>
@@ -61,17 +63,17 @@ export const TagsPage = () => {
             label='Items on page'
             onChange={handlePagesizeChange}
           >
-            <MenuItem value={10}>10</MenuItem>
-            <MenuItem value={20}>20</MenuItem>
-            <MenuItem value={30}>30</MenuItem>
-            <MenuItem value={50}>50</MenuItem>
+            {pageSizesOption.map((sizeOption) => (
+              <MenuItem key={sizeOption} value={sizeOption}>
+                {sizeOption}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Box>
       <Box sx={{ boxShadow: 2 }}>
         <Table<Tag>
-          // data={data?.items || []}
-          data={[]}
+          data={data?.items || []}
           columns={columns}
           loading={isLoading}
           noDataComponent={

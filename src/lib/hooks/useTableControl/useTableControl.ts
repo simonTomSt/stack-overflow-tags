@@ -2,14 +2,18 @@ import { useCallback, useMemo, useReducer } from 'react';
 import { ActionType, TableControlAction, TableControlsState } from './types';
 import { SortOrder } from '@/lib/api/api-models';
 
+const defaultState = {
+  page: 1,
+  pagesize: 20,
+  sort: '',
+  order: SortOrder.Desc,
+};
+
 const initialStateFactory = (
   initialStateOverride: Partial<TableControlsState> = {}
 ): TableControlsState => {
   return {
-    page: 1,
-    pagesize: 20,
-    sort: '',
-    order: SortOrder.Desc,
+    ...defaultState,
     ...initialStateOverride,
   };
 };
@@ -48,9 +52,22 @@ export const useTableControl = (
     dispatch({ type: ActionType.SET_PAGESIZE, payload });
   }, []);
 
-  const setSortInput = useCallback((sort: string, order: SortOrder) => {
-    dispatch({ type: ActionType.SET_SORT_INPUT, payload: { sort, order } });
-  }, []);
+  const setSortInput = useCallback(
+    (sort: string | undefined, order: SortOrder) => {
+      if (!sort) {
+        dispatch({
+          type: ActionType.SET_SORT_INPUT,
+          payload: {
+            sort: initialStateOverride?.sort || defaultState.sort,
+            order: initialStateOverride?.order || defaultState.order,
+          },
+        });
+        return;
+      }
+      dispatch({ type: ActionType.SET_SORT_INPUT, payload: { sort, order } });
+    },
+    [initialStateOverride?.order, initialStateOverride?.sort]
+  );
 
   const getTotalPages = useCallback(
     (total: number) => Math.ceil(total / state.pagesize),

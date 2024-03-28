@@ -10,7 +10,7 @@ export interface Tag {
 }
 
 export interface SortInput {
-  order: 'desc' | 'asc';
+  order: SortOrder;
   sort: string;
 }
 
