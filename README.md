@@ -23,8 +23,11 @@ As well as a few others tools:
 ## Functionality
 
 - Tags table
+
 - Table sorting
+
 - Table page size changing
+
 - Table pagination
 
 ### How to run project
@@ -36,3 +39,14 @@ As well as a few others tools:
 - `npm run storybook` - Run storybook locally
 
 - `npm run test` - Run all tests
+
+### NPM peer dependency issue
+
+If you have a peer dependency conflict issue while resolving: `@testing-library/react-hooks@8.0.1` you need to:
+
+1.  Remove `node_modules`
+2.  Run: `npm config set legacy-peer-deps true`
+3.  Run: `npm i`
+
+Or just directly:
+Run `npm install --legacy-peer-deps`
