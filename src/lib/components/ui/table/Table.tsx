@@ -120,7 +120,7 @@ export const Table = <T extends RowData>({
                       return (
                         <TableCell key={cell.id}>
                           {loading ? (
-                            <Skeleton />
+                            <Skeleton data-testid='skeleton' />
                           ) : (
                             flexRender(
                               cell.column.columnDef.cell,

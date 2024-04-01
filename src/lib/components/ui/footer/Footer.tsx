@@ -44,6 +44,9 @@ export const Footer = () => {
         <div>
           <FormControl fullWidth>
             <Select<string>
+              inputProps={{
+                'data-testid': 'lang-select',
+              }}
               value={i18n.language}
               size='small'
               onChange={onLangChange}
